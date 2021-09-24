@@ -1,4 +1,4 @@
-CC = g++-11
+CC = g++
 CFLAGS = -Wall -g
  
 
@@ -13,5 +13,5 @@ hw2.o: hw2.cpp asteroid.h countHits.h
 	$(CC) $(CFLAGS) -c hw2.cpp
  
 countHits.o: countHits.h asteroid.h
-	$(CC) $(CFLAGS) -c counthits.cpp
+	$(CC) $(CFLAGS) -c countHits.cpp
 
