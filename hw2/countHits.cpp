@@ -8,8 +8,16 @@ int countHits(vector<Asteroid> a){
             ast_hits.push_back(asti);
         }
         if (asti.d == left) {
-            for (int j=0; j < ast_hits.size(); j++) {
-                if (asti.m >= ast_hits.at(j).m) {
+            for (int j=ast_hits.size()-1; j == 0; j--) {  // iterate from right to left
+                if (asti.m == ast_hits.at(j).m) {
+                    // same mass asteroids cancel each other
+                    ast_hits.erase(ast_hits.begin() + j);  // can erase (destroy) since we don't need it anymore
+                    break; // effectively remove asti
+                }
+                if (asti.m < ast_hits.at(j).m) { // asteroid going left got destroyed by the right
+                   break;
+                }
+                if (asti.m > ast_hits.at(j).m) {
                     ast_hits.erase(ast_hits.begin() + j);  // can erase (destroy) since we don't need it anymore 
                 }
             }
