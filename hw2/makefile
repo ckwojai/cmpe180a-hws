@@ -11,8 +11,8 @@ test: test.o countHits.o
 clean:
 	-rm *.o $(objects) main 
 
-hw2.o: main.cc asteroid.h countHits.h
-	$(CC) $(CFLAGS) -c main.cc
+test.o: main.cc asteroid.h countHits.h
+	$(CC) $(CFLAGS) -c main.cc -o test.o
  
 hw2.o: hw2.cpp asteroid.h countHits.h
 	$(CC) $(CFLAGS) -c hw2.cpp
