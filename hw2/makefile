@@ -9,10 +9,10 @@ test: test.o countHits.o
 	$(CC) $(CFLAGS) -o test test.o countHits.o
 
 clean:
-	-rm *.o $(objects) main 
+	-rm *.o $(objects) main test
 
-test.o: main.cc asteroid.h countHits.h
-	$(CC) $(CFLAGS) -c main.cc -o test.o
+test.o: test.cc asteroid.h countHits.h
+	$(CC) $(CFLAGS) -c test.cc
  
 hw2.o: hw2.cpp asteroid.h countHits.h
 	$(CC) $(CFLAGS) -c hw2.cpp
