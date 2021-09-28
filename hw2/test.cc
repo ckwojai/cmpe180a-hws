@@ -38,5 +38,10 @@ int main() {
     vector<Asteroid> a3 = {{10, right}, {11, right}, {11, right}};
     string test30("Test3.0");
     testCountHits(test30, a3, 3, points_per_test, total_grade);
+
+    vector<Asteroid> a4 = {{10, right}, {11, right}, {11, right}, {100, left}};
+    string test40("Test4.0");
+    testCountHits(test30, a4, 4, points_per_test, total_grade);
+
     cout << "TOTAL GRADE=" << total_grade << endl;
 }
