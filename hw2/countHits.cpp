@@ -1,4 +1,6 @@
 #include "countHits.h"
+#include <iostream>
+
 
 int countHits(vector<Asteroid> a){
     vector<Asteroid> ast_hits;
@@ -8,7 +10,7 @@ int countHits(vector<Asteroid> a){
             ast_hits.push_back(asti);
         }
         if (asti.d == left) {
-            for (int j=ast_hits.size()-1; j == 0; j--) {  // iterate from right to left
+            for (int j=ast_hits.size()-1; j >= 0; j--) {  // iterate from right to left
                 if (asti.m == ast_hits.at(j).m) {
                     // same mass asteroids cancel each other
                     ast_hits.erase(ast_hits.begin() + j);  // can erase (destroy) since we don't need it anymore

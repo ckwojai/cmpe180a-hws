@@ -17,6 +17,6 @@ test.o: test.cc asteroid.h countHits.h
 hw2.o: hw2.cpp asteroid.h countHits.h
 	$(CC) $(CFLAGS) -c hw2.cpp
  
-countHits.o: countHits.h asteroid.h
+countHits.o: countHits.h countHits.cpp asteroid.h
 	$(CC) $(CFLAGS) -c countHits.cpp
 
