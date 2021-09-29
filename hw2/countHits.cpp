@@ -1,5 +1,4 @@
 #include "countHits.h"
-#include <iostream>
 
 
 int countHits(vector<Asteroid> a){
