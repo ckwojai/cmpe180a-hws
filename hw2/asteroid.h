@@ -1,7 +1,7 @@
 #ifndef __ASTEROID_H_
 #define __ASTEROID_H_
 
-enum Direction {left, right};
+enum Direction {Left, Right};
 
 struct Asteroid {
   int m;

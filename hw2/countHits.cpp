@@ -6,10 +6,10 @@ int countHits(vector<Asteroid> a){
     vector<Asteroid> ast_hits;
     for (int i=0; i < a.size(); i++) {
         Asteroid asti = a.at(i);
-        if (asti.d == right) {
+        if (asti.d == Right) {
             ast_hits.push_back(asti);
         }
-        if (asti.d == left) {
+        if (asti.d == Left) {
             for (int j=ast_hits.size()-1; j >= 0; j--) {  // iterate from right to left
                 if (asti.m == ast_hits.at(j).m) {
                     // same mass asteroids cancel each other
