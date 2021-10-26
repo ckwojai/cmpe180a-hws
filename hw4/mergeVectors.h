@@ -5,6 +5,6 @@
 using std::vector;
 
 
-void mergeStrings(const vector<vector<int>>& input, vector<int>& result);
+void mergeVectors(const vector<vector<int>>& input, vector<int>& result);
 
 #endif // __MERGESTRINGS_H_

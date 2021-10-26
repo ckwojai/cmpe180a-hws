@@ -3,7 +3,7 @@ CFLAGS = -Wall -g
 
 
 test: test.o mergeVectors.o
-	$(CC) $(CFLAGS) -o test.out test.o mergeStrings.o
+	$(CC) $(CFLAGS) -o test.out test.o mergeVectors.o
 
 clean:
 	-rm *.o $(objects) *.out
