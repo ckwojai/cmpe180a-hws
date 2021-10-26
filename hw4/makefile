@@ -11,5 +11,5 @@ clean:
 test.o: test.cc mergeVectors.h
 	$(CC) $(CFLAGS) -c test.cc
 
-mergeStrings.o: mergeVectors.h mergeVectors.cpp
+mergeVectors.o: mergeVectors.h mergeVectors.cpp
 	$(CC) $(CFLAGS) -c mergeVectors.cpp
