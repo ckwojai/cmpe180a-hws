@@ -39,6 +39,7 @@ ostream& operator<<(ostream& os, const BigInt& bi) {
   return os;
 }
 istream& operator>>(istream& is, BigInt& dt) {
+  return is;
 }
 
 BigInt::BigInt(const vector<char>& vec_char) {
@@ -48,6 +49,7 @@ BigInt::BigInt(const vector<char>& vec_char) {
     if (it==vec_char.cbegin()) {
       if (*it == '-') {
 	isNegative = true;
+      } else if (*it == '+') {
       } else {
         vec_int.push_back(*it-'0');
       }
@@ -95,17 +97,22 @@ BigInt BigInt::operator+(const BigInt& r) {
         result.push_back(extra + '0');
       }
     } else if (lit != this->digits.crend()-1) {
-      while(lit != this->digits.crend()) {
+      while(lit != this->digits.crend()-1) {
         int ld = *lit - '0';
         int sd = ld + extra;
         if (sd >= 10) {
           extra = 1;
           result.push_back((sd-10) + '0');
         } else {
+	  std::cout << sd << std::endl;
           result.push_back(sd + '0');
           extra = 0;
         }
         lit++;
+	for (auto it=result.cbegin(); it!=result.cend(); it++) {
+	  std::cout << *it;
+	}
+	std::cout << std::endl;
       }
     } else {
       while(rit != r.digits.crend()-1) {
@@ -122,18 +129,10 @@ BigInt BigInt::operator+(const BigInt& r) {
       }
     }
   }
+  for (auto it=result.cbegin(); it!=result.cend(); it++) {
+    std::cout << *it;
+  }
+  std::cout << std::endl;
   std::reverse(result.begin(), result.end());
   return BigInt(result);
 }
-    BigInt BigInt::operator-(const BigInt& r);
-    BigInt BigInt::operator*(const BigInt& r);
-    bool BigInt::operator!();
-    bool BigInt::operator==(const BigInt& r);
-    bool BigInt::operator>=(const BigInt& r);
-    bool BigInt::operator>(const BigInt& r);
-    bool BigInt::operator<=(const BigInt& r);
-    bool BigInt::operator<(const BigInt& r);
-    BigInt BigInt::operator++();
-    BigInt BigInt::operator--();
-    BigInt BigInt::operator++(int);
-    BigInt BigInt::operator--(int);
