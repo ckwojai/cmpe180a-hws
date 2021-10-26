@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 #include "BigInt.h"
 
 void BigInt::init(const vector<int>& vec_int) {
@@ -37,6 +38,8 @@ ostream& operator<<(ostream& os, const BigInt& bi) {
   os << std::endl;
   return os;
 }
+istream& operator>>(istream& is, BigInt& dt) {
+}
 
 BigInt::BigInt(const vector<char>& vec_char) {
   vector<int> vec_int;
@@ -65,3 +68,72 @@ BigInt::BigInt(int[], int arr_s) {
 }
 BigInt::BigInt(char[], int arr_s) {
 }
+BigInt BigInt::operator+(const BigInt& r) {
+  char ls = this->digits.at(0);
+  char rs = r.digits.at(0);
+  auto lit = this->digits.crbegin();
+  auto rit = r.digits.crbegin();
+  vector<char> result;
+  if (ls=='+' and rs=='+') {
+    int extra = 0;
+    while (lit!=this->digits.crend()-1 && rit!=r.digits.crend()-1) {
+      int ld = *lit - '0';
+      int rd = *rit - '0';
+      int sd = ld + rd + extra;
+      if (sd >= 10) {
+        extra = 1;
+        result.push_back((sd-10) + '0');
+      } else {
+        result.push_back(sd + '0');
+        extra = 0;
+      }
+      lit++;
+      rit++;
+    }
+    if (lit == this->digits.crend()-1 && rit == r.digits.crend()-1) {
+      if (extra==1) {
+        result.push_back(extra + '0');
+      }
+    } else if (lit != this->digits.crend()-1) {
+      while(lit != this->digits.crend()) {
+        int ld = *lit - '0';
+        int sd = ld + extra;
+        if (sd >= 10) {
+          extra = 1;
+          result.push_back((sd-10) + '0');
+        } else {
+          result.push_back(sd + '0');
+          extra = 0;
+        }
+        lit++;
+      }
+    } else {
+      while(rit != r.digits.crend()-1) {
+        int rd = *rit - '0';
+        int sd = rd + extra;
+        if (sd >= 10) {
+          extra = 1;
+          result.push_back((sd-10) + '0');
+        } else {
+          result.push_back(sd + '0');
+          extra = 0;
+        }
+        rit++;
+      }
+    }
+  }
+  std::reverse(result.begin(), result.end());
+  return BigInt(result);
+}
+    BigInt BigInt::operator-(const BigInt& r);
+    BigInt BigInt::operator*(const BigInt& r);
+    bool BigInt::operator!();
+    bool BigInt::operator==(const BigInt& r);
+    bool BigInt::operator>=(const BigInt& r);
+    bool BigInt::operator>(const BigInt& r);
+    bool BigInt::operator<=(const BigInt& r);
+    bool BigInt::operator<(const BigInt& r);
+    BigInt BigInt::operator++();
+    BigInt BigInt::operator--();
+    BigInt BigInt::operator++(int);
+    BigInt BigInt::operator--(int);
