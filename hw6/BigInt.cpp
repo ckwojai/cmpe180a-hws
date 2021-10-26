@@ -76,7 +76,7 @@ BigInt BigInt::operator+(const BigInt& r) {
   auto lit = this->digits.crbegin();
   auto rit = r.digits.crbegin();
   vector<char> result;
-  if (ls=='+' and rs=='+') {
+  if ((ls=='+' && rs=='+') || (ls=='-' && rs=='-')) {
     int extra = 0;
     while (lit!=this->digits.crend()-1 && rit!=r.digits.crend()-1) {
       int ld = *lit - '0';
@@ -96,43 +96,34 @@ BigInt BigInt::operator+(const BigInt& r) {
       if (extra==1) {
         result.push_back(extra + '0');
       }
-    } else if (lit != this->digits.crend()-1) {
-      while(lit != this->digits.crend()-1) {
-        int ld = *lit - '0';
-        int sd = ld + extra;
-        if (sd >= 10) {
-          extra = 1;
-          result.push_back((sd-10) + '0');
-        } else {
-	  std::cout << sd << std::endl;
-          result.push_back(sd + '0');
-          extra = 0;
-        }
-        lit++;
-	for (auto it=result.cbegin(); it!=result.cend(); it++) {
-	  std::cout << *it;
-	}
-	std::cout << std::endl;
+    }
+    while(lit != this->digits.crend()-1) {
+      int ld = *lit - '0';
+      int sd = ld + extra;
+      if (sd >= 10) {
+        extra = 1;
+        result.push_back((sd-10) + '0');
+      } else {
+        std::cout << sd << std::endl;
+        result.push_back(sd + '0');
+        extra = 0;
       }
-    } else {
-      while(rit != r.digits.crend()-1) {
-        int rd = *rit - '0';
-        int sd = rd + extra;
-        if (sd >= 10) {
-          extra = 1;
-          result.push_back((sd-10) + '0');
-        } else {
-          result.push_back(sd + '0');
-          extra = 0;
-        }
-        rit++;
+      lit++;
+    }
+    while(rit != r.digits.crend()-1) {
+      int rd = *rit - '0';
+      int sd = rd + extra;
+      if (sd >= 10) {
+        extra = 1;
+        result.push_back((sd-10) + '0');
+      } else {
+        result.push_back(sd + '0');
+        extra = 0;
       }
+      rit++;
     }
   }
-  for (auto it=result.cbegin(); it!=result.cend(); it++) {
-    std::cout << *it;
-  }
-  std::cout << std::endl;
+  result.push_back(ls); // (-a+-b)=-(a+b)
   std::reverse(result.begin(), result.end());
   return BigInt(result);
 }
