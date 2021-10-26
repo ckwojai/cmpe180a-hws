@@ -15,6 +15,7 @@ class BigInt {
     BigInt(char[], int arr_s);
     friend ostream& operator<<(ostream& os, const BigInt& bi);
   private:
+    void init(const vector<int>& vec_int);
     vector<char> digits;
 };
 
