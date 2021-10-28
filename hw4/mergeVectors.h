@@ -7,4 +7,4 @@ using std::vector;
 
 void mergeVectors(const vector<vector<int>>& input, vector<int>& result);
 
-#endif // __MERGESTRINGS_H_
+#endif // __MERGEVECTORS_H_
