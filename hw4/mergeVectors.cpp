@@ -23,14 +23,6 @@ void mergeVectors(const vector<vector<int>>& input, vector<int>& result) {
         all_done++;
       }
     }
-    for (int i=0; i<to_sort_ints.size(); i++) {
-      std::cout << to_sort_ints[i] << " ";
-    }
-    std::cout << std::endl;
-    for (int i=0; i<result.size(); i++) {
-      std::cout << result[i] << " ";
-    }
-    std::cout << std::endl;
     if (all_done == input.size()) { // When all vec_iters reaches the end
       done = true;
     } else {
