@@ -30,7 +30,6 @@ class BigInt {
     friend ostream& operator<<(ostream& os, const BigInt& bi);
     friend istream& operator>>(istream& is, BigInt& dt);
   private:
-    void init(const vector<int>& vec_int);
     BigInt abs() const;
     BigInt neg() const;
     vector<char> digits;

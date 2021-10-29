@@ -3,12 +3,18 @@
 #include <cmath>
 #include "BigInt.h"
 
+using std::cout;
+using std::endl;
 
-void BigInt::init(const vector<int>& vec_int) {
+BigInt::BigInt(const vector<int>& vec_int) {
   bool leading_zero = true;
   for(auto it=vec_int.cbegin(); it!=vec_int.cend(); it++) {
     int digit = *it;
     if (leading_zero && digit==0) {
+      if (it == vec_int.cbegin()) {
+        std::cerr << "sign can't be determined if first element is 0, assuming positive.\n";
+        digits.push_back('+');
+      }
       continue;
     } else {
       leading_zero = false;
@@ -36,33 +42,33 @@ void BigInt::init(const vector<int>& vec_int) {
   }
 }
 
-BigInt::BigInt(const vector<int>& vec_int) {
-  init(vec_int);
-}
-
 BigInt::BigInt(const vector<char>& vec_char) {
-  vector<int> vec_int;
-  bool isNegative = false;
+  bool leading_zero = true;
   for(auto it=vec_char.cbegin(); it!=vec_char.cend(); it++) {
+    int digit = *it - '0';
     if (it==vec_char.cbegin()) {
-      if (*it == '-') {
-	isNegative = true;
-      } else if (*it == '+') {
+      if (*it == '+' || *it == '-') {
+        digits.push_back(*it);
       } else {
-        vec_int.push_back(*it-'0');
-      }
-    } else if (it==vec_char.cbegin()+1) {
-      if (isNegative) {
-	int num = -(*it-'0');
-	vec_int.push_back(num);
-      } else {
-        vec_int.push_back(*it-'0');
+        digits.push_back('+');
+        if (!(digit >=0 && digit<=9)) {
+          std::cerr << "Provided digit out of bound. Please provide a single digit.\n";
+	  exit(0);
+        } else if (digit == 0) { // sign is a leading 0...
+          std::cerr << "Sign digit is 0. Ignoring it...\n";
+	} else {
+	  digits.push_back(*it);
+	  leading_zero = false;
+	}
       }
     } else {
-      vec_int.push_back(*it-'0');
+      if (leading_zero && digit==0) {
+      } else {
+        digits.push_back(*it);
+	leading_zero = false;
+      }
     }
   }
-  init(vec_int);
 }
 ostream& operator<<(ostream& os, const BigInt& bi) {
   for(auto it=bi.digits.cbegin(); it!=bi.digits.cend(); it++) {
@@ -143,11 +149,13 @@ BigInt BigInt::operator+(const BigInt& r) const {
       }
       rit++;
     }
+    if (extra == 1) { // for cases like 9999+9;
+      result.push_back('1');
+    }
     // remove leading 0s before adding sign
     for (auto it=result.crbegin(); it!=result.crend(); it++) {
       if (*it == '0') {
         result.pop_back();
-        it++;
       } else {
         break;
       }
@@ -202,9 +210,8 @@ BigInt BigInt::operator-(const BigInt& r) const {
       }
       // remove leading 0s before adding sign
       for (auto it=result.crbegin(); it!=result.crend(); it++) {
-        if (*it == '0') {
+        if (*it == '-1') {
           result.pop_back();
-          it++;
         } else {
           break;
         }

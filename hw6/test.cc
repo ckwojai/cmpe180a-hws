@@ -15,6 +15,9 @@ int main(){
   lv = {'+', '1', '0', '0', '0', '0', '0', '0'};
   rv = {'-', '9'};
   test(lv, rv);
+  lv = {'+', '0', '0', '0', '9', '9', '9', '9'};
+  rv = {'-', '9'};
+  test(lv, rv);
   // std::cout << BigInt(lv) + BigInt(rv) << std::endl;
   return 0;
 }
