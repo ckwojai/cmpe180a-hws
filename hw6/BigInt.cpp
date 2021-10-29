@@ -5,8 +5,14 @@
 
 
 void BigInt::init(const vector<int>& vec_int) {
+  bool leading_zero = true;
   for(auto it=vec_int.cbegin(); it!=vec_int.cend(); it++) {
     int digit = *it;
+    if (leading_zero && digit==0) {
+      continue;
+    } else {
+      leading_zero = false;
+    }
     if (!(digit >=-9 && digit<=9)) {
       std::cerr << "Provided digit out of bound. Please provide a single digit.\n";
         exit(0);
@@ -137,6 +143,15 @@ BigInt BigInt::operator+(const BigInt& r) const {
       }
       rit++;
     }
+    // remove leading 0s before adding sign
+    for (auto it=result.crbegin(); it!=result.crend(); it++) {
+      if (*it == '0') {
+        result.pop_back();
+        it++;
+      } else {
+        break;
+      }
+    }
     result.push_back(ls); // (-a+-b)=-(a+b)
     std::reverse(result.begin(), result.end());
     return BigInt(result);
@@ -185,6 +200,15 @@ BigInt BigInt::operator-(const BigInt& r) const {
         }
         lit++;
       }
+      // remove leading 0s before adding sign
+      for (auto it=result.crbegin(); it!=result.crend(); it++) {
+        if (*it == '0') {
+          result.pop_back();
+          it++;
+        } else {
+          break;
+        }
+      }
       result.push_back('+');
       std::reverse(result.begin(), result.end());
       return BigInt(result);
@@ -220,7 +244,7 @@ bool BigInt::operator>(const BigInt& r) const {
   } else if (ls == '-' and rs == '+') {
     return false;
   } else if (ls == '+' and rs == '+') {
-    if (this->digits.size() > r.digits.size()) {
+    if (this->digits.size() > r.digits.size()) { // assuming no leading zeros
       return true;
     } else if (this->digits.size() < r.digits.size()) {
       return false;
