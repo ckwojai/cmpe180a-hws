@@ -14,15 +14,15 @@ class BigInt {
     BigInt(const vector<char>& vec_char);
     BigInt(int[], int arr_s);
     BigInt(char[], int arr_s);
-    BigInt operator+(const BigInt& r);
-    BigInt operator-(const BigInt& r);
-    BigInt operator*(const BigInt& r);
+    BigInt operator+(const BigInt& r) const;
+    BigInt operator-(const BigInt& r) const;
+    BigInt operator*(const BigInt& r) const;
     bool operator!();
-    bool operator==(const BigInt& r);
-    bool operator>=(const BigInt& r);
-    bool operator>(const BigInt& r);
-    bool operator<=(const BigInt& r);
-    bool operator<(const BigInt& r);
+    bool operator==(const BigInt& r) const;
+    bool operator>=(const BigInt& r) const;
+    bool operator>(const BigInt& r) const;
+    bool operator<=(const BigInt& r) const;
+    bool operator<(const BigInt& r) const;
     BigInt operator++();
     BigInt operator--();
     BigInt operator++(int);
@@ -31,6 +31,8 @@ class BigInt {
     friend istream& operator>>(istream& is, BigInt& dt);
   private:
     void init(const vector<int>& vec_int);
+    BigInt abs() const;
+    BigInt neg() const;
     vector<char> digits;
 };
 
