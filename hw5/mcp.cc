@@ -6,6 +6,7 @@
 #include <fstream>    // file I/O
 #include <iostream>   // cout or cin
 #include <string>
+#include <cstring>
 #include <vector>
 
 using std::cout;
@@ -16,6 +17,7 @@ using std::string;
 using std::vector;
 using std::ios;
 using std::cerr;
+using std::strcmp;
 
 bool file_exist(const string& name) {
   if (FILE *file = fopen(name.c_str(), "r")) {
@@ -62,7 +64,7 @@ int main(int argc, char* argv[]) {
       target_file_check = true;
       i++;
     } else {
-      cout << "Invalid flags. Please use '-m' for the first matrix file and '-M' for the second." << endl;
+      cout << "Invalid flags. Please use '-s' for the source file and '-t' for the target file." << endl;
       exit(1);
     }
   }
