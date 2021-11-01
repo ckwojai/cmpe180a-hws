@@ -12,6 +12,10 @@ void testMergedVectors(const string &test_name, vector<vector<int>> &input,
 
     vector<int> merged_vector;
     mergeVectors(input, merged_vector);
+    for (auto it=merged_vector.cbegin(); it!=merged_vector.cend(); it++){
+      cout << *it << ",";
+    }
+    cout << endl;
     bool equalFlag = true;
 
     if(merged_vector.size() == expected_merged_vec.size()){
@@ -54,9 +58,9 @@ int main(){
 
     //Test2.0
     //Temp Vectors
-    temp1 = {1,2,3};
-    temp2 = {7,6,5,4};
-    temp3 = {8,9,10};
+    temp1 = {1,4,7,8};
+    temp2 = {9,5,5,2,0};
+    temp3 = {3,6,10};
 
     inVec.clear();
     //Preparing Input Vector
@@ -65,7 +69,7 @@ int main(){
     inVec.push_back(temp3);
 
     //Expected Merged Vector
-    vector<int> res2{1,2,3,4,5,6,7,8,9,10};
+    vector<int> res2{0,1,2,3,4,5,5,6,7,8,9,10};
     testMergedVectors("Test2.0",inVec, res2, points_per_test, total_grade);
     //Final Grade
     cout << total_grade << endl;
