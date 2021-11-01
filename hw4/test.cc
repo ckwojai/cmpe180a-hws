@@ -62,6 +62,7 @@ int main(){
     //Preparing Input Vector
     inVec.push_back(temp1);
     inVec.push_back(temp2);
+    inVec.push_back(temp3);
 
     //Expected Merged Vector
     vector<int> res2{1,2,3,4,5,6,7,8,9,10};
