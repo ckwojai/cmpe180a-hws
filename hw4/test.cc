@@ -71,6 +71,22 @@ int main(){
     //Expected Merged Vector
     vector<int> res2{0,1,2,3,4,5,5,6,7,8,9,10};
     testMergedVectors("Test2.0",inVec, res2, points_per_test, total_grade);
+
+    //Test3.0
+    //Temp Vectors
+    temp1 = {1,4,7,8};
+    temp2 = {9,5,5,2,0};
+    temp3 = {10,6,3};
+
+    inVec.clear();
+    //Preparing Input Vector
+    inVec.push_back(temp1);
+    inVec.push_back(temp2);
+    inVec.push_back(temp3);
+
+    //Expected Merged Vector
+    vector<int> res3{10,9,8,7,6,5,5,4,3,2,1,0};
+    testMergedVectors("Test3.0",inVec, res3, points_per_test, total_grade);
     //Final Grade
     cout << total_grade << endl;
     return 0;

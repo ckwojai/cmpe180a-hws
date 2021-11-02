@@ -65,6 +65,6 @@ void mergeVectors(const vector<vector<int>>& input, vector<int>& result) {
   }
   // Majority sorting
   if (desc_count > (input.size() - desc_count)) {
-    std::reverse((result.begin(), result.end()));
+    std::reverse(result.begin(), result.end());
   }
 }
