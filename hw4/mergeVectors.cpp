@@ -21,12 +21,14 @@ bool asc_order(vector<int> vec) {
 }
 
 void mergeVectors(const vector<vector<int>>& input, vector<int>& result) {
+  int desc_count = 0;
   // Make sure all vectors are sorted in ascending order
   vector<vector<int>> asc_input;
   for (auto it=input.cbegin(); it!=input.cend(); it++) {
     if (asc_order(*it)) {
       asc_input.push_back(*it);
     } else {
+      desc_count++;
       vector<int> rev_vec(*it);
       std::reverse((rev_vec).begin(), (rev_vec).end());
       asc_input.push_back(rev_vec);
@@ -60,5 +62,9 @@ void mergeVectors(const vector<vector<int>>& input, vector<int>& result) {
       result.push_back(to_sort_ints.at(min_index));
       vec_iters.at(min_index)++;
     }
+  }
+  // Majority sorting
+  if (desc_count > (input.size() - desc_count)) {
+    std::reverse((result.begin(), result.end()));
   }
 }
