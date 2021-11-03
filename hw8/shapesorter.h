@@ -6,7 +6,7 @@
 
 using std::vector;
 
-void ShapeSorter(vector<Shape*>)& shapes);
+void ShapeSorter(vector<Shape*>& shapes);
 
 
 #endif // SHAPESORTER_H_

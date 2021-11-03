@@ -25,7 +25,17 @@ int main(){
   XYpoint rp4 = {0,4};
   Rectangle rect(rp1, rp2, rp3, rp4);
 
-  cout << cir.area() << ", " << tri.area() << ", " << rect.area() << endl;
+  vector<Shape*> vec_shape = {&cir, &tri, &rect};
+  // cout << cir.area() << ", " << tri.area() << ", " << rect.area() << endl;
+  for (auto it=vec_shape.cbegin(); it!=vec_shape.cend(); it++) {
+    cout << (*it)->area() << ", ";
+  }
+  cout << endl;
+  ShapeSorter(vec_shape);
+  for (auto it=vec_shape.cbegin(); it!=vec_shape.cend(); it++) {
+    cout << (*it)->area() << ", ";
+  }
+  cout << endl;
 
   return 0;
 }
