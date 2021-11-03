@@ -21,8 +21,8 @@ BigInt::BigInt(const vector<int>& vec_int) {
     }
     if (!(digit >=-9 && digit<=9)) {
       std::cerr << "Provided digit out of bound. Please provide a single digit.\n";
-        exit(0);
-      }
+      exit(0);
+    }
     if (it == vec_int.cbegin()) { // First element, okay to be negative
       if (digit < 0) {
         digits.push_back('-');
@@ -37,7 +37,7 @@ BigInt::BigInt(const vector<int>& vec_int) {
         digits.push_back('0' + std::abs(digit));
       } else {
         digits.push_back('0' + digit);
-        }
+      }
     }
   }
 }
@@ -53,19 +53,19 @@ BigInt::BigInt(const vector<char>& vec_char) {
         digits.push_back('+');
         if (!(digit >=0 && digit<=9)) {
           std::cerr << "Provided digit out of bound. Please provide a single digit.\n";
-	  exit(0);
+          exit(0);
         } else if (digit == 0) { // sign is a leading 0...
           std::cerr << "Sign digit is 0. Ignoring it...\n";
-	} else {
-	  digits.push_back(*it);
-	  leading_zero = false;
-	}
+        } else {
+          digits.push_back(*it);
+          leading_zero = false;
+        }
       }
     } else {
       if (leading_zero && digit==0) {
       } else {
         digits.push_back(*it);
-	leading_zero = false;
+        leading_zero = false;
       }
     }
   }
