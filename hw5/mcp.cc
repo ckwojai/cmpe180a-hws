@@ -64,11 +64,16 @@ int main(int argc, char* argv[]) {
       target_file_check = true;
       i++;
     } else {
-      cout << "Invalid flags. Please use '-s' for the source file and '-t' for the target file." << endl;
+      cerr << "Invalid flags. Please use '-s' for the source file and '-t' for the target file." << endl;
       exit(1);
     }
   }
-  for (auto it=des_path_vec.cbegin(); it!=des_path_vec.cend(); it++) {
-    copy_file(src_path, *it);
+  if (src_file_check && target_file_check) {
+    for (auto it=des_path_vec.cbegin(); it!=des_path_vec.cend(); it++) {
+      copy_file(src_path, *it);
+    }
+  } else {
+      cerr << "Not enough flags are provided. Please use '-s' for the source file and '-t' for the target file." << endl;
+      exit(1):
   }
 }
