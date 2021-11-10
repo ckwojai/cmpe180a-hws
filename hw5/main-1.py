@@ -5,7 +5,7 @@ grade_per_test = 10
 
 #Change your path here before testing
 base_path_assignment5 = "/Users/kinchang/Documents/SJSU/CMPE 180A/cmpe180a-hws/hw5"
-
+base_path_assignment5 = "/home/kin/cmpe180a-hws/hw5"
 
 def create_dummy_files(path):
     os.chdir(path)
