@@ -74,6 +74,6 @@ int main(int argc, char* argv[]) {
     }
   } else {
       cerr << "Not enough flags are provided. Please use '-s' for the source file and '-t' for the target file." << endl;
-      exit(1):
+      exit(1);
   }
 }
