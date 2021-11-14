@@ -1,6 +1,7 @@
 #include <iostream>
 #include <algorithm>
 #include <cmath>
+#include <string>
 #include "BigInt.h"
 
 using std::cout;
@@ -104,7 +105,12 @@ ostream& operator<<(ostream& os, const BigInt& bi) {
   }
   return os;
 }
+
 istream& operator>>(istream& is, BigInt& dt) {
+  std::string str;
+  is >> str;
+  vector<char> vc(str.begin(), str.end());
+  dt.init(vc);
   return is;
 }
 
@@ -260,6 +266,12 @@ BigInt BigInt::operator-(const BigInt& r) const {
     return (*this + r.neg());
   }
 }
+
+bool BigInt::operator!() const {
+  int arr[1] = {0};
+  BigInt z(arr, 1);
+  return *this == z;
+}
 bool BigInt::operator==(const BigInt& r) const {
   return this->digits == r.digits;
 }
@@ -328,4 +340,29 @@ bool BigInt::operator<(const BigInt& r) const {
 }
 bool BigInt::operator<=(const BigInt& r) const {
   return r >= *this;
+}
+BigInt BigInt::operator++() {
+  int arr[1] = {1};
+  BigInt one(arr, 1);
+  *this = *this + one;
+  return *this;
+}
+
+BigInt BigInt::operator--() {
+  int arr[1] = {1};
+  BigInt one(arr, 1);
+  *this = *this - one;
+  return *this;
+}
+
+BigInt BigInt::operator++(int) {
+  BigInt tmp(*this);
+  operator++();
+  return tmp;
+}
+
+BigInt BigInt::operator--(int) {
+  BigInt tmp(*this);
+  operator--();
+  return tmp;
 }

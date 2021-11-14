@@ -17,6 +17,7 @@ class BigInt {
     BigInt operator+(const BigInt& r) const;
     BigInt operator-(const BigInt& r) const;
     BigInt operator*(const BigInt& r) const;
+    bool operator!() const;
     bool operator!();
     bool operator==(const BigInt& r) const;
     bool operator>=(const BigInt& r) const;
