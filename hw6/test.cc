@@ -8,6 +8,7 @@ void test(const vector<char>& lv, const vector<char>& rv) {
   std::cout << "l + r = " << l + r << std::endl;
   std::cout << "l - r = " << l - r << std::endl;
   std::cout << "r - l = " << r - l << std::endl;
+  std::cout << "l * r = " << l * r << std::endl;
 }
 
 int main(){

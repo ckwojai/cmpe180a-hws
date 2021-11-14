@@ -150,11 +150,13 @@ BigInt BigInt::operator*(const BigInt& r) const {
   }
   if (r.digits.size() == 2) { // single digits
     BigInt result(*this);
-    for (int i=0; i < r.digits.back() - 1; i++) {
-      result = result + result;
+    int digit = r.digits.back() - '0';
+    for (int i=0; i < digit - 1; i++) {
+      result = result + *this;
     }
     return result;
   }
+  return *this;
 }
 
 BigInt BigInt::operator+(const BigInt& r) const {
