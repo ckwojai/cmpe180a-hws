@@ -141,6 +141,22 @@ BigInt BigInt::neg() const {
   return neg_bi;
 }
 
+BigInt BigInt::operator*(const BigInt& r) const {
+  char ls = this->digits.at(0);
+  char rs = r.digits.at(0);
+  if (!r || !*this) { // either operand is 0
+    vector<char> vc = {'+', '0'};
+    return BigInt(vc);
+  }
+  if (r.digits.size() == 2) { // single digits
+    BigInt result(*this);
+    for (int i=0; i < r.digits.back() - 1; i++) {
+      result = result + result;
+    }
+    return result;
+  }
+}
+
 BigInt BigInt::operator+(const BigInt& r) const {
   char ls = this->digits.at(0);
   char rs = r.digits.at(0);
