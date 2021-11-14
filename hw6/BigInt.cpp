@@ -6,7 +6,7 @@
 using std::cout;
 using std::endl;
 
-BigInt::BigInt(const vector<int>& vec_int) {
+void BigInt::init(const vector<int>& vec_int) {
   bool leading_zero = true;
   for(auto it=vec_int.cbegin(); it!=vec_int.cend(); it++) {
     int digit = *it;
@@ -42,7 +42,7 @@ BigInt::BigInt(const vector<int>& vec_int) {
   }
 }
 
-BigInt::BigInt(const vector<char>& vec_char) {
+void BigInt::init(const vector<char>& vec_char) {
   bool leading_zero = true;
   for(auto it=vec_char.cbegin(); it!=vec_char.cend(); it++) {
     int digit = *it - '0';
@@ -70,6 +70,29 @@ BigInt::BigInt(const vector<char>& vec_char) {
     }
   }
 }
+
+BigInt::BigInt(int arr[], int arr_s) {
+  vector<int> vi;
+  for (int i=0; i < arr_s; i++) {
+    vi.push_back(arr[i]);
+  }
+  init(vi);
+}
+BigInt::BigInt(char arr[], int arr_s) {
+  vector<char> vc;
+  for (int i=0; i < arr_s; i++) {
+    vc.push_back(arr[i]);
+  }
+  init(vc);
+}
+BigInt::BigInt(const vector<int>& vec_int) {
+  init(vec_int);
+}
+
+BigInt::BigInt(const vector<char>& vec_char) {
+  init(vec_char);
+}
+
 ostream& operator<<(ostream& os, const BigInt& bi) {
   for(auto it=bi.digits.cbegin(); it!=bi.digits.cend(); it++) {
     os << *it;
@@ -80,10 +103,7 @@ istream& operator>>(istream& is, BigInt& dt) {
   return is;
 }
 
-BigInt::BigInt(int[], int arr_s) {
-}
-BigInt::BigInt(char[], int arr_s) {
-}
+
 BigInt BigInt::abs() const {
   vector<char> tmp = this->digits;
   tmp.at(0) = '+'; // make it positive

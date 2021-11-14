@@ -12,8 +12,8 @@ class BigInt {
     BigInt();
     BigInt(const vector<int>& vec_int);
     BigInt(const vector<char>& vec_char);
-    BigInt(int[], int arr_s);
-    BigInt(char[], int arr_s);
+    BigInt(int arr[], int arr_s);
+    BigInt(char arr[], int arr_s);
     BigInt operator+(const BigInt& r) const;
     BigInt operator-(const BigInt& r) const;
     BigInt operator*(const BigInt& r) const;
@@ -33,6 +33,8 @@ class BigInt {
     BigInt abs() const;
     BigInt neg() const;
     vector<char> digits;
+    void init(const vector<int>& vec_int);
+    void init(const vector<char>& vec_char);
 };
 
 #endif // __MERGESTRINGS_H_
