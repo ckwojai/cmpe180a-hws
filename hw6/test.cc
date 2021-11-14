@@ -8,12 +8,12 @@ void test(const vector<char>& lv, const vector<char>& rv) {
   std::cout << "l + r = " << l + r << std::endl;
   std::cout << "l - r = " << l - r << std::endl;
   std::cout << "r - l = " << r - l << std::endl;
-  std::cout << "l * r = " << l * r << std::endl;
+  std::cout << "l * r = " << r * l << std::endl;
 }
 
 int main(){
   vector<char> lv = {'-', '1', '0'};
-  vector<char> rv = {'+', '2'};
+  vector<char> rv = {'-', '2', '2'};
   test(lv, rv);
   lv = {'+', '1', '0', '0', '0', '0', '0', '0'};
   rv = {'-', '9'};
@@ -21,8 +21,8 @@ int main(){
   lv = {'+', '0', '0', '0', '9', '9', '9', '9'};
   rv = {'-', '9'};
   test(lv, rv);
-  lv = {'+', '8'};
-  rv = {'+', '2'};
+  lv = {'+', '9', '9', '9', '9'};
+  rv = {'+', '1', '2', '3', '4'};
   test(lv, rv);
 
   char ca[4] = {'-', '1'};

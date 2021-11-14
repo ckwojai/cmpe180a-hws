@@ -26,6 +26,7 @@ void BigInt::init(const vector<int>& vec_int) {
       leading_zero = false;
     }
     if (!(digit >=-9 && digit<=9)) {
+
       std::cerr << "Provided digit out of bound. Please provide a single digit.\n";
       exit(0);
     }
@@ -73,10 +74,14 @@ void BigInt::init(const vector<char>& vec_char) {
       }
     } else {
       if (leading_zero && digit==0) {
+	if (vec_char.size() == 2) {
+	  digits.push_back('0');
+	  return;
+	}
       } else {
 	int digit = *it - '0';
         if (!(digit >=0 && digit<=9)) {
-          std::cerr << "Provided digit out of bound. Please provide a single digit.\n";
+          std::cerr << "Provided digit: " << *it << " out of bound. Please provide a single digit.\n";
           exit(0);
 	}
         digits.push_back(*it);
@@ -161,16 +166,17 @@ BigInt BigInt::operator*(const BigInt& r) const {
   vector<char> vc = {'+', '0'};
   BigInt result(vc);
   int add_zero = 0;
-  for (auto rit=r.digits.crbegin(); rit!=r.digits.crend(); rit++) {
+  for (auto rit=r.digits.crbegin(); rit!=r.digits.crend()-1; rit++) {
     char digit = *rit;
-    vector<char> vc = {'+', digit};
+    vector<char> vc = {'+'};
+    vc.push_back(digit);
     BigInt rtmp(vc);
     BigInt product = *this * rtmp;
     for (int i=0; i < add_zero; i++) {
       product.digits.push_back('0');
     }
+    result = result + product;
     add_zero++;
-    result = result + *this * rtmp;
   }
   result.digits.front() = sign;
   return result;
