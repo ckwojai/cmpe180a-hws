@@ -242,6 +242,10 @@ BigInt BigInt::operator-(const BigInt& r) const {
     } else if (*this < r) { // l - r = -(r - l) < 0
       BigInt res = r - *this;
       return res.neg();
+    } else { // l-r = 0
+      int arr[1] = {0};
+      BigInt z(arr,1);
+      return z;
     }
   } else if (ls=='-' && rs=='-') { // l - r = l + abs(r) = abs(r) - abs(l)
     return r.abs() - (*this).abs();
