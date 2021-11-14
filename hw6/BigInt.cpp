@@ -151,11 +151,6 @@ BigInt BigInt::operator+(const BigInt& r) const {
       lit++;
       rit++;
     }
-    if (lit == this->digits.crend()-1 && rit == r.digits.crend()-1) {
-      if (extra==1) {
-        result.push_back(extra + '0');
-      }
-    }
     while(lit != this->digits.crend()-1) {
       int ld = *lit - '0';
       int sd = ld + extra;
@@ -180,7 +175,7 @@ BigInt BigInt::operator+(const BigInt& r) const {
       }
       rit++;
     }
-    if (extra == 1) { // for cases like 9999+9;
+    if (extra == 1) { // for cases like 9999+9, or 1+9;
       result.push_back('1');
     }
     // remove leading 0s before adding sign
@@ -197,7 +192,7 @@ BigInt BigInt::operator+(const BigInt& r) const {
   } else if (ls=='+' && rs=='-') { // pos1 + neg2, which is the same as pos1 - abs(neg2)
     return (*this - r.abs());
   } else if (ls=='-' && rs=='+') { // neg1 + pos2, which is the same as pos2 - abs(neg1)
-    return (this->abs() - r);
+    return (r - this->abs());
   }
 }
 
