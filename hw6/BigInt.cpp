@@ -61,6 +61,10 @@ void BigInt::init(const vector<char>& vec_char) {
           std::cerr << "Provided digit out of bound. Please provide a single digit.\n";
           exit(0);
         } else if (digit == 0) { // sign is a leading 0...
+	  if (vec_char.size() == 1) { // {'0'}
+	    digits.push_back('0');
+	    return;
+	  }
           std::cerr << "Sign digit is 0. Ignoring it...\n";
         } else {
           digits.push_back(*it);
@@ -70,6 +74,11 @@ void BigInt::init(const vector<char>& vec_char) {
     } else {
       if (leading_zero && digit==0) {
       } else {
+	int digit = *it - '0';
+        if (!(digit >=0 && digit<=9)) {
+          std::cerr << "Provided digit out of bound. Please provide a single digit.\n";
+          exit(0);
+	}
         digits.push_back(*it);
         leading_zero = false;
       }
@@ -97,6 +106,9 @@ BigInt::BigInt(const vector<int>& vec_int) {
 
 BigInt::BigInt(const vector<char>& vec_char) {
   init(vec_char);
+}
+
+BigInt::BigInt() {
 }
 
 ostream& operator<<(ostream& os, const BigInt& bi) {

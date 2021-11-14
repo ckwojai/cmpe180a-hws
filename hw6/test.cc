@@ -31,5 +31,8 @@ int main(){
   std::cout << ++la << std::endl;
   std::cout << --ra << std::endl;
   // std::cout << BigInt(lv) + BigInt(rv) << std::endl;
+  BigInt bi;
+  std::cin >> bi;
+  std::cout << bi;
   return 0;
 }
