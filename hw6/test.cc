@@ -23,7 +23,7 @@ int main(){
   int ia[3] = {1, 2, 3};
   BigInt la(ca, 4);
   BigInt ra(ia, 3);
-  // std::cout << la + ra << std::endl;
+  std::cout << la + ra << std::endl;
   // std::cout << BigInt(lv) + BigInt(rv) << std::endl;
   return 0;
 }

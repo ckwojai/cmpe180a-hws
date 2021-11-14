@@ -11,6 +11,11 @@ void BigInt::init(const vector<int>& vec_int) {
   for(auto it=vec_int.cbegin(); it!=vec_int.cend(); it++) {
     int digit = *it;
     if (leading_zero && digit==0) {
+      if (vec_int.size() == 1) { // {0}
+        digits.push_back('+');
+	digits.push_back('0');
+	return;
+      }
       if (it == vec_int.cbegin()) {
         std::cerr << "sign can't be determined if first element is 0, assuming positive.\n";
         digits.push_back('+');
