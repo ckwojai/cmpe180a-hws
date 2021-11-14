@@ -142,8 +142,9 @@ BigInt BigInt::neg() const {
 }
 
 BigInt BigInt::operator*(const BigInt& r) const {
-  char ls = this->digits.at(0);
-  char rs = r.digits.at(0);
+  char ls = this->digits.front();
+  char rs = r.digits.front();
+  char sign = ls == rs ? '+' : '-';
   if (!r || !*this) { // either operand is 0
     vector<char> vc = {'+', '0'};
     return BigInt(vc);
@@ -154,9 +155,25 @@ BigInt BigInt::operator*(const BigInt& r) const {
     for (int i=0; i < digit - 1; i++) {
       result = result + *this;
     }
+    result.digits.front() = sign;
     return result;
   }
-  return *this;
+  vector<char> vc = {'+', '0'};
+  BigInt result(vc);
+  int add_zero = 0;
+  for (auto rit=r.digits.crbegin(); rit!=r.digits.crend(); rit++) {
+    char digit = *rit;
+    vector<char> vc = {'+', digit};
+    BigInt rtmp(vc);
+    BigInt product = *this * rtmp;
+    for (int i=0; i < add_zero; i++) {
+      product.digits.push_back('0');
+    }
+    add_zero++;
+    result = result + *this * rtmp;
+  }
+  result.digits.front() = sign;
+  return result;
 }
 
 BigInt BigInt::operator+(const BigInt& r) const {
