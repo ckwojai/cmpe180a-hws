@@ -230,7 +230,7 @@ BigInt BigInt::operator-(const BigInt& r) const {
       }
       // remove leading 0s before adding sign
       for (auto it=result.crbegin(); it!=result.crend(); it++) {
-        if (*it == '-1') {
+        if (*it == '0') {
           result.pop_back();
         } else {
           break;
