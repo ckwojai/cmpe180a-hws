@@ -118,6 +118,9 @@ BigInt::BigInt() {
 
 ostream& operator<<(ostream& os, const BigInt& bi) {
   for(auto it=bi.digits.cbegin(); it!=bi.digits.cend(); it++) {
+    if (it==bi.digits.cbegin() && *it == '+') { 
+	 continue; // don't explicitly print out + sign
+    }
     os << *it;
   }
   return os;
