@@ -11,15 +11,15 @@ struct Node {
 };
 
 class CircularLinkedList {
-   public:
-    CircularLinkedList();
-    ~CircularLinkedList();
-    void push(int i, ClockDirection d);
-    int pop(ClockDirection d);
-    int peek();
-    void rotate(unsigned int n, ClockDirection d);
-    friend ostream& operator<<(ostream& os, const CircularLinkedList& bi);
-  private:
-    Node* head;
-    int size;
+    public:
+        CircularLinkedList();
+        ~CircularLinkedList();
+        void push(int i, ClockDirection d);
+        int pop(ClockDirection d);
+        int peek();
+        void rotate(unsigned int n, ClockDirection d);
+        friend ostream& operator<<(ostream& os, const CircularLinkedList& bi);
+    private:
+        Node* head;
+        int size;
 };
