@@ -1,4 +1,3 @@
-#include <iostream>
 #include "CircularLinkedList.h"
 
 CircularLinkedList::CircularLinkedList() {
