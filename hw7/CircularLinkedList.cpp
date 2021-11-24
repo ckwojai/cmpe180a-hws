@@ -17,39 +17,44 @@ void CircularLinkedList::push(int i, ClockDirection d) {
         head->prev = head;
         size = 1;
     } else {
-        if (d == Clockwise) {
-            Node* newHead = new Node();
+        Node* newHead = new Node();
+	newHead->data = i;
+        if (d == ClockWise) {
             Node* tmp = head->next;
             head->next = newHead;
             newHead->prev = head;
             newHead->next = tmp;
-            head = newHead;
         } else {
-            Node* newHead = new Node();
             Node* tmp = head->prev;
             head->prev = newHead;
             newHead->next = head;
             newHead->prev = tmp;
-            head = newHead;
         }
+        head = newHead;
         size++;
     }
 }
 int CircularLinkedList::pop(ClockDirection d) {
-
+  return 1;
 }
 int CircularLinkedList::peek() {
-
+ return 2;
 }
 void CircularLinkedList::rotate(unsigned int n, ClockDirection d) {
-
+ return;
 }
 ostream& operator<<(ostream& os, const CircularLinkedList& bi) {
     // Print in ClockWise direction
     Node* tmp = bi.head;
+    bool first = true;
     do {
         if (tmp != NULL) {
-            os << tmp->data << ", ";
+	  if (first) {
+            os << tmp->data;
+	    first = false;
+	  } else {
+            os << "," << tmp->data;
+	  }
         }
         tmp = tmp->next;
     } while (tmp!=bi.head);

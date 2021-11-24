@@ -15,8 +15,6 @@ class CircularLinkedList {
     CircularLinkedList();
     ~CircularLinkedList();
     void push(int i, ClockDirection d);
-    int peek();
-    void rotate(unsigned int n, ClockDirection d);
     int pop(ClockDirection d);
     int peek();
     void rotate(unsigned int n, ClockDirection d);
