@@ -12,13 +12,17 @@ int main() {
     circularLinkedList.push(4, ClockDirection::ClockWise);
 
     // should print 4,1,2,3 (any notation but this order)
-    cout<<circularLinkedList << "\n";
+    cout << circularLinkedList << "\n";
 
     circularLinkedList.pop(ClockDirection::ClockWise);
     // should print 1,2,3 (any notation but this order)
-    cout<<circularLinkedList << "\n";
+    cout << circularLinkedList << "\n";
 
     // should print 1
     cout<<circularLinkedList.peek() << "\n";
+
+    circularLinkedList.rotate(1, CounterClockWise);
+    cout << circularLinkedList << "\n";
+
     return 0;
 }

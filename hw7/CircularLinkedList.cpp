@@ -7,7 +7,20 @@ CircularLinkedList::CircularLinkedList() {
 
 }
 CircularLinkedList::~CircularLinkedList() {
-
+  if (head == NULL) {
+    return;
+  }
+  if (size == 1) {
+    delete head;
+    return;
+  }
+  Node* tmp = head->next;
+  do {
+      tmp = tmp->next;
+      delete tmp->prev;	 
+  } while (tmp!=head);
+  delete head;
+  return;
 }
 void CircularLinkedList::push(int i, ClockDirection d) {
     if (head == NULL) {
@@ -50,9 +63,11 @@ int CircularLinkedList::pop(ClockDirection d) {
     if (d == ClockWise) {
         head = old_head->next;
         head->prev = old_head->prev;
+	old_head->prev->next = head;
     } else {
         head = old_head->prev;
         head->next = old_head->next;
+	old_head->next->prev = head;
     }
     delete old_head;
     return pop_value;
@@ -62,23 +77,35 @@ int CircularLinkedList::peek() {
     return head->data;
 }
 void CircularLinkedList::rotate(unsigned int n, ClockDirection d) {
+    if (head == NULL || size == 1) { // if list is empty or only one node
+        return;
+    }
+    auto tmp = head;
+    for (unsigned int i=0; i < n; i++) {
+      if (d == ClockWise) {
+	tmp = tmp->next;
+      } else {
+	tmp = tmp->prev;
+      }
+    }
+    head = tmp;
     return;
 }
 ostream& operator<<(ostream& os, const CircularLinkedList& bi) {
     // Print in ClockWise direction
     Node* tmp = bi.head;
+    int head_data = bi.head->data;
     bool first = true;
     do {
         if (tmp != NULL) {
             if (first) {
-                os << tmp->data;
+		os << head_data;
                 first = false;
             } else {
-                os << "," << tmp->data;
+	      os << "," << tmp->data;
             }
         }
         tmp = tmp->next;
     } while (tmp!=bi.head);
-    os << std::endl;
     return os;
 }
