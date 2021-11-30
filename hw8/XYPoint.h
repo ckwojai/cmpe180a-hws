@@ -1,9 +1,18 @@
 #ifndef XYPOINT_H_
 #define XYPOINT_H_
 
-struct XYpoint {
-  double x;
-  double y;
+class XYPoint {
+  public:
+    XYPoint() {
+      x = 0;
+      y = 0;
+    }
+    XYPoint(double xx, double yy) {
+      x = xx;
+      y = yy;
+    }
+    double x;
+    double y;
 };
 
 

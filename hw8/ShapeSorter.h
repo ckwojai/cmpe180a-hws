@@ -2,7 +2,7 @@
 #define SHAPESORTER_H_
 
 #include <vector>
-#include "shape.h"
+#include "Shape.h"
 
 using std::vector;
 

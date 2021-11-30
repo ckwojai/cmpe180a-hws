@@ -11,27 +11,27 @@ class Shape {
 
 class Circle: public Shape {
   public:
-    Circle(const XYpoint& icenter, const double& iradius);
+    Circle(const XYPoint& icenter, const double& iradius);
     double area();
   private:
-    XYpoint center;
+    XYPoint center;
     double radius;
 };
 
 class Triangle:public Shape {
   public:
-    Triangle(const XYpoint& iv1, const XYpoint& iv2, const XYpoint& iv3);
+    Triangle(const XYPoint& iv1, const XYPoint& iv2, const XYPoint& iv3);
     double area();
   private:
-    XYpoint v1, v2, v3;
+    XYPoint v1, v2, v3;
 };
 
 class Rectangle: public Shape {
   public:
-    Rectangle(const XYpoint& iv1, const XYpoint& iv2, const XYpoint& iv3, const XYpoint& iv4);
+    Rectangle(const XYPoint& iv1, const XYPoint& iv2, const XYPoint& iv3, const XYPoint& iv4);
     double area();
   private:
-    XYpoint v1, v2, v3, v4;
+    XYPoint v1, v2, v3, v4;
 };
 
 #endif // SHAPE_H_

@@ -35,8 +35,7 @@ void testShapeSorter(const string &test_name, vector<Shape*> test_shapes_vector,
         cout << test_name + " succeeded! +" << points_for_this_test << endl;
     }
     else{
-       cout << test_name + " failed!" << endl;
-    }
+       cout << test_name + " failed!" << endl; }
 }
 
 int main() {
