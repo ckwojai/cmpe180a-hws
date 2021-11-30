@@ -3,14 +3,8 @@
 
 class XYPoint {
   public:
-    XYPoint() {
-      x = 0;
-      y = 0;
-    }
-    XYPoint(double xx, double yy) {
-      x = xx;
-      y = yy;
-    }
+    XYPoint();
+    XYPoint(double xx, double yy);
     double x;
     double y;
 };

@@ -16,3 +16,6 @@ shape.o: Shape.h Shape.cpp XYPoint.h
 
 shapesorter.o: ShapeSorter.cpp Shape.h
 	$(CC) $(CFLAGS) -c ShapeSorter.cpp -o shapesorter.o
+
+xypoint.o: XYPoint.h XYPoint.cpp
+	$(CC) $(CFLAGS) -c XYPoint.cpp -o xypoint.o
