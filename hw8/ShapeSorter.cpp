@@ -1,12 +1,10 @@
-#ifndef SHAPESORTER_H_
-#define SHAPESORTER_H_
+#include <algorithm>
+#include "ShapeSorter.h"
 
-#include <vector>
-#include "shape.h"
+bool compareShape(Shape* s1, Shape* s2) {
+  return s1->area() < s2->area();
+}
 
-using std::vector;
-
-void ShapeSorter(vector<Shape*>& shapes);
-
-
-#endif // SHAPESORTER_H_
+void ShapeSorter(vector<Shape*>& shapes) {
+  std::sort(shapes.begin(), shapes.end(), compareShape);
+}
